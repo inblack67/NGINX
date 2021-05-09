@@ -6,27 +6,39 @@ services:
       - '80:80'
     volumes:
       - ./nginx:/etc/nginx
+    networks:
+      - webnet
   app1:
     image: inblack67/app:latest
     environment:
       - PORT=5000
     depends_on:
       - load_balancer
+    networks:
+      - webnet
   app2:
     image: inblack67/app:latest
     environment:
       - PORT=5001
     depends_on:
       - load_balancer
+    networks:
+      - webnet
   app3:
     image: inblack67/app:latest
     environment:
       - PORT=5002
     depends_on:
       - load_balancer
+    networks:
+      - webnet
   app4:
     image: inblack67/app:latest
     environment:
       - PORT=5003
     depends_on:
       - load_balancer
+    networks:
+      - webnet
+networks:
+  webnet:
