@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+  load_balancer:
+    image: nginx
+    ports:
+      - '80:80'
+    volumes:
+      - ./nginx:/etc/nginx
+  app1:
+    image: inblack67/app:latest
+    environment:
+      - PORT=5000
+    depends_on:
+      - load_balancer
+  app2:
+    image: inblack67/app:latest
+    environment:
+      - PORT=5001
+    depends_on:
+      - load_balancer
+  app3:
+    image: inblack67/app:latest
+    environment:
+      - PORT=5002
+    depends_on:
+      - load_balancer
+  app4:
+    image: inblack67/app:latest
+    environment:
+      - PORT=5003
+    depends_on:
+      - load_balancer
